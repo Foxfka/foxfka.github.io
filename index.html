@@ -29,7 +29,7 @@
                 } else {
                     document.addEventListener("DOMContentLoaded", fn);
                 }
-            } 
+            }
 
             docReady(function() {
                 var resultContainer = document.getElementById('qr-reader-results');
@@ -39,16 +39,9 @@
                     "qr-reader", { fps: 10, qrbox: 250 });
                 
                 function onScanSuccess(decodedText, decodedResult) {
-                    if (decodedText !== lastResult) {
-                        ++countResults;
-                        lastResult = decodedText;
-                        console.log(`Scan result = ${decodedText}`, decodedResult);
-            
-                        resultContainer.innerHTML += `<div>[${countResults}] - ${decodedText}</div>`;
-                        
-                        // Optional: To close the QR code scannign after the result is found
-                        html5QrcodeScanner.clear();
-                    }
+                    resultContainer.innerHTML += `<div><pre>${decodedText}</pre></div>`;
+                    
+                    html5QrcodeScanner.clear();
                 }
                 
                 // Optional callback for error, can be ignored.
